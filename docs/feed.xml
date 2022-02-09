@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-03-23T19:00:25+01:00</updated><id>/feed.xml</id><title type="html">limepixl’s Blog</title><subtitle>A place that keeps my humble notes, observations, and thoughts about the vast world of computer graphics.
+</subtitle><author><name>limepixl</name></author><entry><title type="html">Hello, world</title><link href="/blog/2022/03/23/first-post.html" rel="alternate" type="text/html" title="Hello, world" /><published>2022-03-23T16:00:00+01:00</published><updated>2022-03-23T16:00:00+01:00</updated><id>/blog/2022/03/23/first-post</id><content type="html" xml:base="/blog/2022/03/23/first-post.html"><![CDATA[<p>For anyone just randomly stumbling upon this first blog post, hello! This is the start of a personal development blog of mine. It will be a place to store my notes, project progress, or ramblings on topics related to graphics programming and light transport.</p>
+
+<p>I decided to pick a static site generator such as Jekyll (or Hugo at first), as I’m pretty bad at web development, and I leave “personal portfolio website built from scratch” on my project TODO list. But for now, it is nice to have everything just work (text, code snippets, KaTeX snippets, an RSS feed…), when fed plain Markdown files.</p>
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">"Hello world!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+\[f(x) = sin(x) + cos^2(x) - 10\]
+
+<p>Hopefully, this blog will contain more interesting content in the near future. Until then, thank you for visiting :)</p>]]></content><author><name>limepixl</name></author><category term="blog" /><summary type="html"><![CDATA[For anyone just randomly stumbling upon this first blog post, hello! This is the start of a personal development blog of mine. It will be a place to store my notes, project progress, or ramblings on topics related to graphics programming and light transport.]]></summary></entry></feed>
