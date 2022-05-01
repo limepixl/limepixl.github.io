@@ -1,5 +1,58 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-05-01T12:51:25+02:00</updated><id>/feed.xml</id><title type="html">limepixl’s Blog</title><subtitle>A place that keeps my humble notes, observations, and thoughts about the vast world of computer graphics.
-</subtitle><author><name>limepixl</name></author><entry><title type="html">My Pathtracing Journey: Part 1</title><link href="/blog/2022/05/01/pathtracer-1.html" rel="alternate" type="text/html" title="My Pathtracing Journey: Part 1" /><published>2022-05-01T00:00:00+02:00</published><updated>2022-05-01T00:00:00+02:00</updated><id>/blog/2022/05/01/pathtracer-1</id><content type="html" xml:base="/blog/2022/05/01/pathtracer-1.html"><![CDATA[<p>Hello again :). I think the best way to kick off this blog is with a devlog!</p>
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+	.MathJax {
+		font-size: 1.3em;
+	}
+  </style><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>My Pathtracing Journey: Part 1 | limepixl’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="My Pathtracing Journey: Part 1" />
+<meta name="author" content="limepixl" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Hello again :). I think the best way to kick off this blog is with a devlog! In this series of a couple blog posts I will be documenting the development process of my latest graphics project: a simple offline unidirectional pathtracer, that works on the CPU. This is one of the bigger codebases I’ve worked on, and as a student, that isn’t really saying much as it is still fairly small. The full project is viewable on GitHub, here." />
+<meta property="og:description" content="Hello again :). I think the best way to kick off this blog is with a devlog! In this series of a couple blog posts I will be documenting the development process of my latest graphics project: a simple offline unidirectional pathtracer, that works on the CPU. This is one of the bigger codebases I’ve worked on, and as a student, that isn’t really saying much as it is still fairly small. The full project is viewable on GitHub, here." />
+<meta property="og:site_name" content="limepixl’s Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-05-01T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="My Pathtracing Journey: Part 1" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"limepixl"},"dateModified":"2022-05-01T00:00:00+02:00","datePublished":"2022-05-01T00:00:00+02:00","description":"Hello again :). I think the best way to kick off this blog is with a devlog! In this series of a couple blog posts I will be documenting the development process of my latest graphics project: a simple offline unidirectional pathtracer, that works on the CPU. This is one of the bigger codebases I’ve worked on, and as a student, that isn’t really saying much as it is still fairly small. The full project is viewable on GitHub, here.","headline":"My Pathtracing Journey: Part 1","mainEntityOfPage":{"@type":"WebPage","@id":"/blog/2022/05/01/pathtracer-1.html"},"url":"/blog/2022/05/01/pathtracer-1.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="limepixl&apos;s Blog" /></head><body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">limepixl&#39;s Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">My Pathtracing Journey: Part 1</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2022-05-01T00:00:00+02:00" itemprop="datePublished">May 1, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Hello again :). I think the best way to kick off this blog is with a devlog!</p>
 
 <p>In this series of a couple blog posts I will be documenting the development process of my latest graphics project: a simple offline unidirectional pathtracer, that works on the CPU. This is one of the bigger codebases I’ve worked on, and as a student, that isn’t really saying much as it is still fairly small. The full project is viewable on GitHub, <a href="https://github.com/limepixl/pathtracer">here</a>.</p>
 
@@ -44,16 +97,37 @@
 
 <p>I plan to work on more variance reduction techniques in order to use a smaller sample count to achieve similar results to what I now achieve with a large sample count. I would like to implement more advanced BRDFs and to fully support any OBJ model I find on the Internet, along with its material (with possible GLTF model support in the further future). Ultimately, I would also move the project over to the GPU, in order to achieve real-time performance, along with a controllable 3D camera! This could either be through a fullscreen tri and fragment shader, or a compute shader.</p>
 
-<p>Thank you for reading my little journey (so far). If this post was interesting to you, make sure to be around for my next posts covering the upcoming features! This blog has a functioning RSS feed to use in your favorite RSS reader :)</p>]]></content><author><name>limepixl</name></author><category term="blog" /><summary type="html"><![CDATA[Hello again :). I think the best way to kick off this blog is with a devlog! In this series of a couple blog posts I will be documenting the development process of my latest graphics project: a simple offline unidirectional pathtracer, that works on the CPU. This is one of the bigger codebases I’ve worked on, and as a student, that isn’t really saying much as it is still fairly small. The full project is viewable on GitHub, here.]]></summary></entry><entry><title type="html">Hello, world</title><link href="/blog/2022/03/23/first-post.html" rel="alternate" type="text/html" title="Hello, world" /><published>2022-03-23T16:00:00+01:00</published><updated>2022-03-23T16:00:00+01:00</updated><id>/blog/2022/03/23/first-post</id><content type="html" xml:base="/blog/2022/03/23/first-post.html"><![CDATA[<p>For anyone just randomly stumbling upon this first blog post, hello! This is the start of a personal development blog of mine. It will be a place to store my notes, project progress, or ramblings on topics related to graphics programming and light transport.</p>
+<p>Thank you for reading my little journey (so far). If this post was interesting to you, make sure to be around for my next posts covering the upcoming features! This blog has a functioning RSS feed to use in your favorite RSS reader :)</p>
 
-<p>I decided to pick a static site generator such as Jekyll (or Hugo at first), as I’m pretty bad at web development, and I leave “personal portfolio website built from scratch” on my project TODO list. But for now, it is nice to have everything just work (text, code snippets, KaTeX snippets, an RSS feed…), when fed plain Markdown files.</p>
+  </div><a class="u-url" href="/blog/2022/05/01/pathtracer-1.html" hidden></a>
+</article>
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-	<span class="n">printf</span><span class="p">(</span><span class="s">"Hello world!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
 
-\[f(x) = sin(x) + cos^2(x) - 10\]
+  <div class="wrapper">
 
-<p>Hopefully, this blog will contain more interesting content in the near future. Until then, thank you for visiting :)</p>]]></content><author><name>limepixl</name></author><category term="blog" /><summary type="html"><![CDATA[For anyone just randomly stumbling upon this first blog post, hello! This is the start of a personal development blog of mine. It will be a place to store my notes, project progress, or ramblings on topics related to graphics programming and light transport.]]></summary></entry></feed>
+    <h2 class="footer-heading">limepixl&#39;s Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">limepixl</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/limepixl"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">limepixl</span></a></li><li><a href="https://www.twitter.com/limepixl"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">limepixl</span></a></li><li><a href="/feed.xml"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#rss"></use></svg> <span>rss</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>A place that keeps my humble notes, observations, and thoughts about the vast world of computer graphics.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
