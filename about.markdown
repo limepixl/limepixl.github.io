@@ -56,3 +56,19 @@ Areas of Knowledge:
 - Custom scene format that defines entities with their meshes and applied transformations
 
 [*(GitHub Link)*](https://github.com/limepixl/chess)
+
+---  
+
+# **Text Editor**
+
+![Text Editor](https://github.com/limepixl/text-editor/raw/main/demo.gif)
+
+A very simple text editor.  
+(Wait for the GIF to load above this line)
+
+Areas of Knowledge:
+- How to keep lines and text in memory
+- Glyph loading and displaying from font file using library
+- Implementation of basic text editor features
+
+[*(GitHub Link)*](https://github.com/limepixl/text-editor)
