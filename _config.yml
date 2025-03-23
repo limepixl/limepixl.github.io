@@ -1,20 +1,13 @@
 title: limepixl's Blog
 author: limepixl
-# email: your-email@domain.com
+email: sivanovki (`dot`) dev (`at`) gmail.com
 description: > # this means to ignore newlines until "twitter_username:"
-  A place that keeps my humble notes, observations, and thoughts about the vast world of computer graphics.
+  A place that keeps my notes, observations, and thoughts about the world of computer graphics.
 
 # social links
-twitter_username: limepixl
-github_username:  limepixl
+bluesky_username: limepixl.bsky.social
+github_username: limepixl
 rss: rss
-
-# Mastodon instances
-# mastodon:
-# - username: jekyll
-#   instance: example.com
-# - username: jekyll2
-#   instance: example.com
 
 show_excerpts: true # set to true to show excerpts on the homepage
 
